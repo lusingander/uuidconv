@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/uuidconv
+uuidconv.so
+uuidconv.dylib
+uuidconv.dll
+uuidconv.a
+uuidconv.lib
+uuidconv-test-*
+*.exe
+*.o
+*.obj
+*.lst

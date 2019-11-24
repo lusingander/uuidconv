@@ -1,0 +1,4 @@
+name "uuidconv"
+description "convert uuid format"
+authors "lusingander"
+copyright "Copyright © 2019, lusingander"
