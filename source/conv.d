@@ -1,13 +1,17 @@
 module conv;
 
-import std.array : replace;
+import std.array : empty, replace;
+import std.exception : collectException;
 import std.uni : toUpper;
 import std.uuid : parseUUID;
 
 /// convert uuid
 string convUUID(string id, bool dash, bool upper)
 {
-    auto parsed = parseUUID(id).toString();
+    string parsed;
+    if (collectException(parseUUID(id).toString(), parsed)) {
+        return "";
+    }
     if (!dash) {
         parsed = parsed.replace("-", "");
     }
@@ -42,5 +46,15 @@ unittest
             convUUID(id, true, true) == "8AB3060E-2CBA-4F23-C74C-B52DB3BDFB46",
             "dash=true, upper=true"
         );
+    }
+
+    const invalid = [
+        "8AB3060E-2CBA-4F23-C74C-B52DB3BDFB46-AAA",
+        "foo",
+        "2019",
+        "",
+    ];
+    foreach (id; invalid) {
+        assert(convUUID(id, false, false).empty);
     }
 }
