@@ -50,6 +50,7 @@ unittest
 
     const invalid = [
         "8AB3060E-2CBA-4F23-C74C-B52DB3BDFB46-AAA",
+        "8AB3060E-2CBA-4F23-C74C-B52DB3BDFB",
         "foo",
         "2019",
         "",
