@@ -13,3 +13,4 @@ uuidconv-test-*
 *.o
 *.obj
 *.lst
+uuidconv-gui
