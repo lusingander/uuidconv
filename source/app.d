@@ -3,7 +3,7 @@ import std.array : empty;
 import std.getopt : getopt;
 import std.stdio : readln, stderr, writeln;
 
-import conv : convUUID;
+import uuidconv : convUUID;
 
 void main(string[] args)
 {

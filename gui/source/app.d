@@ -5,6 +5,8 @@ import std.exception : collectException;
 import std.uni : toUpper;
 import std.uuid : parseUUID;
 
+import uuidconv : convUUID, valid;
+
 mixin APP_ENTRY_POINT;
 
 /// Entry point for dlangui based application
@@ -27,11 +29,11 @@ extern (C) int UIAppMain(string[] args)
 
 	idEdit.contentChange = delegate(EditableContent src) {
 		const id = idEdit.text;
-		if (id.valid) {
-			editUpperDash.text   = id.convUUID(true,  true);
-			editUpperNodash.text = id.convUUID(false, true);
-			editLowerDash.text   = id.convUUID(true,  false);
-			editLowerNodash.text = id.convUUID(false, false);
+		if (id.dvalid) {
+			editUpperDash.text   = id.dconvUUID(true,  true);
+			editUpperNodash.text = id.dconvUUID(false, true);
+			editLowerDash.text   = id.dconvUUID(true,  false);
+			editLowerNodash.text = id.dconvUUID(false, false);
 			idEdit.backgroundColor = "#FEFEFE";
 		} else {
 			idEdit.backgroundColor = "#AA4444";
@@ -49,19 +51,12 @@ extern (C) int UIAppMain(string[] args)
 	return Platform.instance.enterMessageLoop();
 }
 
-private bool valid(dstring id)
+bool dvalid(dstring id)
 {
-	return id.parseUUID.collectException is null;
+	return id.to!string().valid;
 }
 
-private dstring convUUID(dstring id, bool dash, bool upper)
+dstring dconvUUID(dstring id, bool dash, bool upper)
 {
-    string parsed = id.parseUUID.toString;
-    if (!dash) {
-        parsed = parsed.replace("-", "");
-    }
-    if (upper) {
-        parsed = parsed.toUpper();
-    }
-    return to!dstring(parsed);
+	return id.to!string().convUUID(dash, upper).to!dstring();
 }

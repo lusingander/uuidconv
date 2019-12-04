@@ -1,4 +1,4 @@
-module conv;
+module uuidconv;
 
 import std.array : empty, replace;
 import std.exception : collectException;
@@ -19,6 +19,11 @@ string convUUID(string id, bool dash, bool upper)
         parsed = parsed.toUpper();
     }
     return parsed;
+}
+
+bool valid(string id)
+{
+	return id.parseUUID.collectException is null;
 }
 
 unittest

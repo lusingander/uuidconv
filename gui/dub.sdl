@@ -1,4 +1,5 @@
 name "uuidconv-gui"
-dependency "dlangui" version="~>0.9.177"
 authors "lusingander"
 copyright "Copyright © 2019, lusingander"
+dependency "uuidconv" path="../"
+dependency "dlangui" version="~>0.9.177"
